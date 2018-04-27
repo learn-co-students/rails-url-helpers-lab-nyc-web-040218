@@ -1,0 +1,5 @@
+<% if @student.active == true %>
+  <p><%=@student.first_name%> is now active.</p>
+<% else %>
+  <p><%=@student.first_name%> is now inactive.</p>
+<% end %>
