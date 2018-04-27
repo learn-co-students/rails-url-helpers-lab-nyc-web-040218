@@ -8,10 +8,13 @@ class StudentsController < ApplicationController
 
   def show
     @student = Student.find(params[:id])
+    @student_active = @student.active
   end
 
   def activate
     @student = Student.find(params[:id])
+    @student_active = @student.active
+    redirect_to "show/#{params[:id]}"
   end
 
   private
