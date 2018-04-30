@@ -1,6 +1,6 @@
 require 'byebug'
 class StudentsController < ApplicationController
-  before_action :set_student, only: [:show, :activate]
+  before_action :set_student, only: [:show]
 
   def index
     @students = Student.all
@@ -8,13 +8,13 @@ class StudentsController < ApplicationController
 
   def show
     @student = Student.find(params[:id])
-    @student_active = @student.active
   end
 
   def activate
     @student = Student.find(params[:id])
-    @student_active = @student.active
-    redirect_to "show/#{params[:id]}"
+    @student.update(active: !@student.active?)
+    @student.save
+    redirect_to @student
   end
 
   private
